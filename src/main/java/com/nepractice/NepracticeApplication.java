@@ -1,10 +1,12 @@
 package com.nepractice;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 @RestController
@@ -35,9 +37,16 @@ public class NepracticeApplication {
 	@DeleteMapping("{customer_id}")
 	public String deleteCusomer(@PathVariable("customer_id") Integer id){
 		 customerJpaRepository.deleteById(id);
-		 return "Customer deleted successfully";
+		 return "Customer deleted successfully!";
 	}
-
+	record UpdateCustomerRequest(String name,String email,Integer age){}
+	@PutMapping("{customer_id}")
+	public String updateCustomer(@PathVariable("customer_id") Integer id,UpdateCustomerRequest customer ){
+		Customer existingcustomer = customerJpaRepository.findById(id)
+						.orElseThrow(() -> new EntityNotFoundException(("Customer Not Found")));
+		System.out.println(existingcustomer);
+		return "Customer updated successfully!";
+	}
 
 
 
