@@ -1,0 +1,6 @@
+SERVER:
+  PORT: 8000
+
+SPRING:
+  main:
+    web-application-type: servlet
