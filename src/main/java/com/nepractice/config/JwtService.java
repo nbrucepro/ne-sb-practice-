@@ -26,7 +26,7 @@ public class JwtService {
     long refreshExpiration = 604800000;
 
     public String extractUsername(String token){
-        return null;
+        return extractClaim(token,Claims::getSubject);
     }
 
     public <T> T extractClaim(String token, Function<Claims,T> claimsResolver){
@@ -69,6 +69,7 @@ public class JwtService {
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
+        System.out.println(username);
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
