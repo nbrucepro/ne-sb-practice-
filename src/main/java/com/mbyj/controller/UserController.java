@@ -10,13 +10,13 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:5173")
-//@RequestMapping("/api/v1/empl")
+@RequestMapping("/api/v1/auth/")
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping("/user")
+    @PostMapping("/register")
     User newUser(@RequestBody User newUser) {
         return userRepository.save(newUser);
     }
