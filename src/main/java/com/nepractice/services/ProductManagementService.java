@@ -26,13 +26,13 @@ public class ProductManagementService {
         System.out.println(product);
         System.out.println("Product registered successfully!");
     }
-    public void registerQuantity(String productCode, int quantity, String operation, LocalDate date) {
+    public void registerQuantity(String productCode, Integer quantity, String operation, LocalDate date) {
         Quantity quantityEntry = new Quantity();
         quantityEntry.setProductCode(productCode);
         quantityEntry.setQuantity(quantity);
         quantityEntry.setOperation(operation);
         quantityEntry.setDate(date);
-
+        System.out.println(quantityEntry);
         quantityRepository.save(quantityEntry);
         System.out.println("Quantity registered successfully!");
     }

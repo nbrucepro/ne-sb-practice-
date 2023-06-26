@@ -1,5 +1,6 @@
 package com.nepractice.controller;
 import com.nepractice.model.Product;
+import com.nepractice.model.Quantity;
 import com.nepractice.services.ProductManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,12 +32,10 @@ public class ProductController {
     @PostMapping("/{productCode}/quantities")
     public void registerQuantity(
             @PathVariable String productCode,
-            @RequestParam int quantity,
-            @RequestParam String operation,
-            @RequestParam String date
+            @RequestBody Quantity quantity
     ) {
-        LocalDate parsedDate = LocalDate.parse(date); // Parse the date string to LocalDate
+//        LocalDate parsedDate = LocalDate.parse(quantity.getDate()); // Parse the date string to LocalDate
 
-        productManagementService.registerQuantity(productCode, quantity, operation, parsedDate);
+        productManagementService.registerQuantity(productCode, quantity.getQuantity(), quantity.getOperation(), quantity.getDate());
     }
 }

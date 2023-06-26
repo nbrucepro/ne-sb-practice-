@@ -21,11 +21,11 @@ public class Quantity {
     private Long id;
 
     private String productCode;
-    private int quantity;
+    private Integer quantity;
     private String operation;
     private LocalDate date;
 
     // Constructors, getters, and setters
-
     // ...
+
 }
